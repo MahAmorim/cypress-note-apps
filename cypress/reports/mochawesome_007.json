@@ -1,0 +1,219 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 7,
+    "passes": 7,
+    "pending": 0,
+    "failures": 0,
+    "start": "2024-10-13T01:37:49.524Z",
+    "end": "2024-10-13T01:38:35.329Z",
+    "duration": 45805,
+    "testsRegistered": 7,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "8c973722-e4a7-487f-af6b-dc27d2ba110d",
+      "title": "",
+      "fullFile": "cypress\\e2e\\autenticacao.cy.js",
+      "file": "cypress\\e2e\\autenticacao.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "90f2824d-e944-4cf3-8831-6d98610502ac",
+          "title": "Validação de Autenticação e Teste de Credenciais de Usuário",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Deve autenticar o usuário com credenciais válidas",
+              "fullTitle": "Validação de Autenticação e Teste de Credenciais de Usuário Deve autenticar o usuário com credenciais válidas",
+              "timedOut": null,
+              "duration": 8402,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.intercept('POST', `${Cypress.env('apiUrl')}/users/login`).as('loginRequest');\ncy.visit('/notes/app');\ncy.get('input[name=\"email\"]').type(Cypress.env('email'));\ncy.get('input[name=\"password\"]').type(Cypress.env('password'));\ncy.get('button[type=\"submit\"]').click();\ncy.wait('@loginRequest').its('response.statusCode').should('eq', 200);",
+              "err": {},
+              "uuid": "3cf4b89f-128b-4529-9290-205c4cfe2025",
+              "parentUUID": "90f2824d-e944-4cf3-8831-6d98610502ac",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Deve exibir mensagem de erro ao inserir credenciais inválidas",
+              "fullTitle": "Validação de Autenticação e Teste de Credenciais de Usuário Deve exibir mensagem de erro ao inserir credenciais inválidas",
+              "timedOut": null,
+              "duration": 2831,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.intercept('POST', `${Cypress.env('apiUrl')}/users/login`).as('loginRequest');\ncy.get('input[name=\"email\"]').type('invaliduser@example.com');\ncy.get('input[name=\"password\"]').type('wrongpassword');\ncy.get('button[type=\"submit\"]').click();\ncy.wait('@loginRequest').its('response.statusCode').should('eq', 401);",
+              "err": {},
+              "uuid": "cfd25995-c690-4cc3-b6a8-ed8220fb2dc7",
+              "parentUUID": "90f2824d-e944-4cf3-8831-6d98610502ac",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Deve exibir mensagem de erro ao tentar logar sem email",
+              "fullTitle": "Validação de Autenticação e Teste de Credenciais de Usuário Deve exibir mensagem de erro ao tentar logar sem email",
+              "timedOut": null,
+              "duration": 22645,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('input[name=\"password\"]').type(Cypress.env('password'));\ncy.get('button[type=\"submit\"]').click();\ncy.get('.invalid-feedback').should('be.visible').should('contain', 'Email address is required');",
+              "err": {},
+              "uuid": "5676bd9f-451f-4557-bc8c-2aaa9a39f107",
+              "parentUUID": "90f2824d-e944-4cf3-8831-6d98610502ac",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Deve exibir mensagem de erro ao não inserir senha",
+              "fullTitle": "Validação de Autenticação e Teste de Credenciais de Usuário Deve exibir mensagem de erro ao não inserir senha",
+              "timedOut": null,
+              "duration": 3942,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.intercept('POST', `${Cypress.env('apiUrl')}/users/login`).as('loginRequest');\ncy.get('input[name=\"email\"]').type(Cypress.env('email'));\ncy.get('input[name=\"password\"]').type('wrongpassword');\ncy.get('button[type=\"submit\"]').click();\ncy.wait('@loginRequest').its('response.statusCode').should('eq', 401);",
+              "err": {},
+              "uuid": "6853beb4-43c4-4b9a-b52d-5e658a9c247f",
+              "parentUUID": "90f2824d-e944-4cf3-8831-6d98610502ac",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Deve exibir mensagem de erro ao inserir um email não registrado",
+              "fullTitle": "Validação de Autenticação e Teste de Credenciais de Usuário Deve exibir mensagem de erro ao inserir um email não registrado",
+              "timedOut": null,
+              "duration": 3188,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.intercept('POST', `${Cypress.env('apiUrl')}/users/login`).as('loginRequest');\ncy.get('input[name=\"email\"]').type('notregistered@example.com');\ncy.get('input[name=\"password\"]').type(Cypress.env('password'));\ncy.get('button[type=\"submit\"]').click();\ncy.wait('@loginRequest').its('response.statusCode').should('eq', 401);",
+              "err": {},
+              "uuid": "5a5f15dc-63b8-4593-b905-149a697b8f44",
+              "parentUUID": "90f2824d-e944-4cf3-8831-6d98610502ac",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Deve exibir mensagem de erro ao inserir um email sem o símbolo \"@\"",
+              "fullTitle": "Validação de Autenticação e Teste de Credenciais de Usuário Deve exibir mensagem de erro ao inserir um email sem o símbolo \"@\"",
+              "timedOut": null,
+              "duration": 2422,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('input[name=\"email\"]').type('invalidemail.com');\ncy.get('input[name=\"password\"]').type(Cypress.env('password'));\ncy.get('button[type=\"submit\"]').click();\ncy.get('.invalid-feedback').should('contain', 'Email address is invalid');",
+              "err": {},
+              "uuid": "1eb4ab37-239d-4e47-981b-a3397223958d",
+              "parentUUID": "90f2824d-e944-4cf3-8831-6d98610502ac",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Deve exibir mensagem de erro ao inserir um email sem domínio",
+              "fullTitle": "Validação de Autenticação e Teste de Credenciais de Usuário Deve exibir mensagem de erro ao inserir um email sem domínio",
+              "timedOut": null,
+              "duration": 1881,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('input[name=\"email\"]').type('invalidemail@domain');\ncy.get('input[name=\"password\"]').type(Cypress.env('password'));\ncy.get('button[type=\"submit\"]').click();\ncy.get('.invalid-feedback').should('contain', 'Email address is invalid');",
+              "err": {},
+              "uuid": "bdf2209e-fd11-477f-98ab-68f9ca9247ac",
+              "parentUUID": "90f2824d-e944-4cf3-8831-6d98610502ac",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "3cf4b89f-128b-4529-9290-205c4cfe2025",
+            "cfd25995-c690-4cc3-b6a8-ed8220fb2dc7",
+            "5676bd9f-451f-4557-bc8c-2aaa9a39f107",
+            "6853beb4-43c4-4b9a-b52d-5e658a9c247f",
+            "5a5f15dc-63b8-4593-b905-149a697b8f44",
+            "1eb4ab37-239d-4e47-981b-a3397223958d",
+            "bdf2209e-fd11-477f-98ab-68f9ca9247ac"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 45311,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

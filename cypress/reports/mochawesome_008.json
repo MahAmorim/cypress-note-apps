@@ -1,0 +1,105 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2024-10-13T01:38:37.989Z",
+    "end": "2024-10-13T01:38:53.834Z",
+    "duration": 15845,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "177f1031-fc70-4d3f-8403-64c2a5d70387",
+      "title": "",
+      "fullFile": "cypress\\e2e\\notepermission.cy.js",
+      "file": "cypress\\e2e\\notepermission.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "73044a15-494f-47d9-afec-3e8c350f58f2",
+          "title": "Validação de Permissões de Acesso e Manipulação de Notas entre Usuários",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Deve impedir o acesso a notas de outros usuários",
+              "fullTitle": "Validação de Permissões de Acesso e Manipulação de Notas entre Usuários Deve impedir o acesso a notas de outros usuários",
+              "timedOut": null,
+              "duration": 15750,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.login('userA@example.com', 'password123');\ncy.intercept('POST', `${Cypress.env('apiUrl')}/notes`).as('createNote');\ncy.get('[data-testid=\"add-new-note\"]').click();\ncy.get('[data-testid=\"note-title\"]').type('Nota do Usuário A');\ncy.get('[data-testid=\"note-description\"]').type('Conteúdo da nota do Usuário A');\ncy.get('[data-testid=\"note-submit\"]').click();\ncy.wait('@createNote').its('response.statusCode').should('eq', 200);\ncy.get('[data-testid=\"logout\"]').click();\ncy.get('.btn-primary').contains('Login').click();\ncy.login();\ncy.visit('/notes/app/nota-de-usuarioA-id');\ncy.contains('Sorry ... The requested page is not available');\ncy.contains('Back to homepage').click();\ncy.get('div#root').should('not.contain', 'Nota do Usuário A');",
+              "err": {},
+              "uuid": "738e1210-d666-4f6b-bdaa-ee0d71ed0e47",
+              "parentUUID": "73044a15-494f-47d9-afec-3e8c350f58f2",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "738e1210-d666-4f6b-bdaa-ee0d71ed0e47"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 15750,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}
